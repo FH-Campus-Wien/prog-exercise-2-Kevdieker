@@ -170,7 +170,7 @@ public class App {
                 sum+=mark;
             }
         }
-        System.out.println(String.format("Average: %.2f\r\nNegative marks: %d",sum/count,negmrk));
+        System.out.println(String.format("Average: %.2f"+System.lineSeparator()+"Negative marks: %d",sum/count,negmrk));
     }
 
 
