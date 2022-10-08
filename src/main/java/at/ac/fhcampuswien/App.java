@@ -9,34 +9,31 @@ public class App {
 
         int numCount=0;
         double num, biggNum=0.0;
-        boolean z = true;
+
 
         Scanner scan =  new Scanner(System.in);
 
-        do {
+        while (true) {
 
-            System.out.print("Number " + (numCount + 1)+": ");
+            System.out.print("Number " + (numCount + 1) + ": ");
 
             num = scan.nextDouble();
 
-
-            if (num < 1.0 && numCount == 0) {
+            if (num <= 0 && numCount == 0) {
                 System.out.println("No number entered.");
-                z = false;
-            }
-             else if (num < 1.0 && numCount > 0) {
-                System.out.println("The largest number is "+biggNum+"  "+numCount);
-                z = false;
-            }
-             else if (num > biggNum) {
+                break;
+
+            } else if (num <= 0) {
+                System.out.println(String.format("The largest number is %.2f", biggNum));
+                break;
+
+            } else if (num > biggNum) {
                 biggNum = num;
-                numCount++;
-            }
-            else{
-                numCount++;
             }
 
-        } while (z == true);
+            numCount++;
+
+        }
 
     }
 
@@ -147,8 +144,35 @@ public class App {
 
     //todo Task 5
     public void marks(){
-        // input your solution here
+
+        int mark =0, count=0, negmrk=0;
+        double sum =0;
+        Scanner scanner= new Scanner(System.in);
+
+        while(true) {
+            System.out.print("Mark " + (count+1) + ": ");
+            mark=scanner.nextInt();
+
+            if(mark==0){
+                if (count==0) {
+                    count++;
+                }
+                break;
+            }
+            else if(mark<1||mark>5){
+                System.out.println("Invalid mark!");
+            }
+            else{
+                if(mark == 5){
+                    negmrk++;
+                }
+                count++;
+                sum+=mark;
+            }
+        }
+        System.out.println(String.format("Average: %.2f\r\nNegative marks: %d",sum/count,negmrk));
     }
+
 
     //todo Task 6
     public void happyNumbers(){
