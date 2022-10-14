@@ -5,13 +5,12 @@ import java.util.Scanner;
 public class App {
 
     //todo Task 1
-    public void largestNumber(){
+    public void largestNumber() {
 
-        int numCount=0;
-        double num, biggNum=0.0;
+        int numCount = 0;
+        double num, biggNum = 0.0;
 
-
-        Scanner scan =  new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
         while (true) {
 
@@ -38,21 +37,22 @@ public class App {
     }
 
     //todo Task 2
-    public void stairs(){
+    public void stairs() {
         Scanner scanner = new Scanner(System.in);
 
-        int num =0, a=1;
+        int num = 0, a = 1;
 
         System.out.print("n: ");
-        num=scanner.nextInt();
-        if(num<1){
+        num = scanner.nextInt();
+
+        if (num < 1) {
             System.out.println("Invalid number!");
         }
 
-        for (int i=0; i<num; i++){
-            for (int j=0; j<i+1;j++){
+        for (int i = 0; i < num; i++) {
+            for (int j = 0; j < i + 1; j++) {
 
-                System.out.print(a+" ");
+                System.out.print(a + " ");
                 a++;
             }
             System.out.println();
@@ -65,143 +65,171 @@ public class App {
 
 
         for (int i = 0; i < 6; i++) {
-
-            for (int j = 4-i; j >= 0; j--) {
+            for (int j = 4 - i; j >= 0; j--) {
                 System.out.print(" ");
             }
-
-            for (int j = 0; j < 2*i + 1; j++) {
-
+            /*
+             *
+             *  [ROWS i]    [* amount j]     [i*2+1]
+             *     [0]           1       ->    0+1
+             *     [1]           3       ->    2+1
+             *     [2]           5       ->    4+1
+             *     [3]           7       ->    6+1
+             *
+             * */
+            for (int j = 0; j < 2 * i + 1; j++) {
                 System.out.print("*");
             }
             System.out.println();
         }
     }
-    //todo Task 4
-    public void printRhombus(){
 
-        int h=0;
+    //todo Task 4
+    public void printRhombus() {
+
+        int h = 0;
         char c;
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("h: ");
-        h=scanner.nextInt();
+        h = scanner.nextInt();
 
         System.out.print("c: ");
-        c=scanner.next().charAt(0);
+        c = scanner.next().charAt(0);
 
-        int CAscii=(int)c;
+        int CAscii = (int) c;
         char b = (char) CAscii;
 
 
-
-        // looks if rows are uneven
-        if(h%2==0){
+        // Looks if row amount is uneven
+        if (h % 2 == 0) {
             System.out.println("Invalid number!");
-        }
-        else {
+        } else {
 
+            //Prints halfway + middle
+            for (int i = 0; i < h / 2 + 1; i++) {
 
-  for(int i=0;i<h/2+1;i++){
+                //Prints upside down Pyramid
+                for (int j = 0; j < (h - 1) / 2 - i; j++) {
+                    System.out.print(" ");
+                }
 
-            for(int j = 0; j<(h-1)/2-i;j++){
-                System.out.print(" ");
+                for (int j = i; j > 0; j--) {
+                    System.out.print((char) (c - j));
+                }
+                //prints middle section
+                System.out.print(c);
+
+                for (int j = 1; j <= i; j++) {
+                    System.out.print((char) (c - j));
+                }
+                System.out.println();
             }
-            for (int j= i; j > 0 ; j--) {
-                    System.out.print((char)(c - j));
-            }
+            //Prints other half - middle
+            for (int i = h / 2 - 1; i >= 0; i--) {
 
-            System.out.print(c);
-
-            for (int j= 1; j <= i ; j++) {
-                System.out.print((char)(c - j));
-            }
-            System.out.println();
-        }
-
-        for(int i=h/2-1;i>=0;i--){
-
-            for(int j = 0; j<(h-1)/2-i;j++){
-                System.out.print(" ");
-            }
-            for (int j= i; j > 0 ; j--) {
-                System.out.print((char)(c - j));
-            }
-
-            System.out.print(c);
+                for (int j = 0; j < (h - 1) / 2 - i; j++) {
+                    System.out.print(" ");
+                }
+                for (int j = i; j > 0; j--) {
+                    System.out.print((char) (c - j));
+                }
+                //prints middle section
+                System.out.print(c);
 
 
-            for (int j= 1; j <= i ; j++) {
-                System.out.print((char)(c - j));
-            }
-            System.out.println();
+                for (int j = 1; j <= i; j++) {
+                    System.out.print((char) (c - j));
+                }
+                System.out.println();
 
             }
 
         }
 
     }
-        //test
+
+    //test
     //todo Task 5
-    public void marks(){
+    public void marks() {
 
-        int mark =0, count=0, negmrk=0;
-        double sum =0;
-        Scanner scanner= new Scanner(System.in);
+        int mark = 0, count = 0, negmrk = 0;
+        double sum = 0;
 
-        while(true) {
-            System.out.print("Mark " + (count+1) + ": ");
-            mark=scanner.nextInt();
+        Scanner scanner = new Scanner(System.in);
 
-            if(mark==0){
-                if (count==0) {
+        while (true) {
+            System.out.print("Mark " + (count + 1) + ": ");
+            mark = scanner.nextInt();
+
+            if (mark == 0) {
+                //cause cant divide by 0
+                if (count == 0) {
                     count++;
                 }
                 break;
             }
-            else if(mark<1||mark>5){
+
+            else if (mark < 1 || mark > 5) {
                 System.out.println("Invalid mark!");
             }
-            else{
-                if(mark == 5){
+
+            else {
+
+                if (mark == 5) {
                     negmrk++;
                 }
+
                 count++;
-                sum+=mark;
+                sum += mark;
             }
         }
-        System.out.println(String.format("Average: %.2f\nNegative marks: %d",sum/count,negmrk));
+        System.out.println(String.format("Average: %.2f\nNegative marks: %d", sum / count, negmrk));
     }
 
 
     //todo Task 6
-    public void happyNumbers(){
-        int n = 0, digit = 0, sum = 0
-                ;
+    public void happyNumbers() {
+        int n = 0, digit = 0, sum = 0;
+
         Scanner scanner = new Scanner(System.in);
         System.out.print("n: ");
-        n=scanner.nextInt();
+        n = scanner.nextInt();
 
         while (true) {
-            if(n==1){
+
+            if (n <= 0) {
+                System.out.println("Invalid number!");
+                break;
+            }
+            if (n == 1) {
                 System.out.println("Happy number!");
                 break;
             }
-            if(n==4){
+            if (n == 4) {
                 System.out.println("Sad number!");
                 break;
             }
-            while (n > 0) { //1
+            /*
+            *         YZ % 10 -> Z
+            *         sum  = Z*Z
+            *         YZ / 10 -> Y
+            *
+            *         Y % 10 -> Y
+            *         sum  = Z*Z + Y*Y
+            *         Y / 10 -> 0
+            */
+            while (n > 0) {
                 digit = n % 10;
                 sum += digit * digit;
                 n /= 10;
             }
             n = sum;
-            sum=0;
+            sum = 0;
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         App exercise2 = new App();
 
         System.out.println("Task 1: Largest Number");
